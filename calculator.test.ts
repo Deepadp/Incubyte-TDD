@@ -1,4 +1,4 @@
-import { add } from './Code/calculator'; // Adjust the import path if necessary
+import { add } from './Code/calculator';
 
 describe('add function', () => {
     test('should return 0 for an empty string', () => {
@@ -49,4 +49,10 @@ describe('add function', () => {
         expect(() => add("1,a")).toThrow("Invalid input: non-numeric value detected.");
         expect(() => add("1,2\nthree")).toThrow("Invalid input: non-numeric value detected.");
     });
+
+    test('should throw an error for negative numbers', () => {
+        expect(() => add("-1,2")).toThrow("Negative numbers are not allowed: -1");
+        expect(() => add("//;\n1;-2;3;-4")).toThrow("Negative numbers are not allowed: -2, -4");
+    });
 });
+

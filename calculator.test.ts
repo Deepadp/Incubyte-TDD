@@ -25,12 +25,24 @@ describe('add function', () => {
         expect(add("1\n2,3")).toBe(6);
     });
 
-    test('should handle new lines between numbers with additional spaces', () => {
+    test('should handle new lines with additional spaces', () => {
         expect(add("10\n20,30")).toBe(60);
     });
 
     test('should handle new lines mixed with commas', () => {
         expect(add("2,3\n4")).toBe(9);
+    });
+
+    test('should return the sum using custom single-character delimiter', () => {
+        expect(add("//;\n1;2")).toBe(3);
+    });
+
+    test('should return the sum using custom multi-character delimiter', () => {
+        expect(add("//[***]\n1***2***3")).toBe(6);
+    });
+
+    test('should return the sum using another custom delimiter', () => {
+        expect(add("//|\n10|20|30")).toBe(60);
     });
 
     test('should throw an error for non-numeric values', () => {
